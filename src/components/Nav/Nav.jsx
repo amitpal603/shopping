@@ -39,7 +39,7 @@ function Nav() {
         <div className='flex items-center gap-2'>
           <div className='flex items-center gap-3 px-3 py-2 bg-purple-400 rounded-sm'>
             <NavLink to="/Cart">
-              <div className='text-[25px] font-medium cursor-pointer'>
+              <div className='text-[25px] font-medium cursor-pointer pl-4'>
                 <FaCartShopping />
               </div>
             </NavLink>
