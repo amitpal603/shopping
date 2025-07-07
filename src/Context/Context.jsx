@@ -1,4 +1,6 @@
 import React, { Children, createContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+
 
 
 
@@ -47,11 +49,13 @@ import React, { Children, createContext, useEffect, useState } from 'react'
     const Click = (id) =>{
         const update = filterData.filter((value,index) => index === id)
         setCart((pre) => [...pre,update])
+        toast.success("Add Cart")
     }
 
     const HandleDelete = (id) => {
         const del = cart.filter((value,index) => index !== id)
         setCart(del)
+        toast.error("remove cart")
     }
     const value = {
        CartData,
