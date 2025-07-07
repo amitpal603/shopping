@@ -29,7 +29,7 @@ function Nav() {
           </div>
           <input
             onChange={(e) => setInput(e.target.value)}
-            className='h-12 w-28 xs:w-36 sm:w-48 md:w-60 outline-none border-t-2 border-r-2 border-b-2 border-gray-500 rounded-r-2xl'
+            className='h-12 w-28 xs:w-36 sm:w-48 md:w-60 pr-4 outline-none border-t-2 border-r-2 border-b-2 border-gray-500 rounded-r-2xl'
             type="text"
             placeholder='Search'
           />
@@ -37,7 +37,7 @@ function Nav() {
 
         {/* Cart */}
         <div className='flex items-center gap-2'>
-          <div className='flex items-center gap-3 px-3 py-2 bg-purple-400 pl-3 pr-3 rounded-sm'>
+          <div className='flex items-center gap-3 px-3 py-2 bg-purple-400  rounded-sm'>
             <NavLink to="/Cart">
               <div className='text-[25px] font-medium cursor-pointer '>
                 <FaCartShopping />
