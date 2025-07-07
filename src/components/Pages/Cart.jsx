@@ -3,16 +3,16 @@ import { Ecart } from '../../Context/Context';
 import { NavLink } from 'react-router-dom';
 
 function Cart() {
-    const { cart,HandleDelete } = useContext(Ecart);
+    const { cart, HandleDelete } = useContext(Ecart);
     console.log(cart);
 
     return (
         <div className='min-h-screen flex flex-col items-center p-6 bg-gray-100'>
             <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
 
-            {cart && cart.length > 0 ? (
+            {cart?.length > 0 ? (
                 <div className='flex flex-col gap-6 w-full max-w-3xl'>
-                    {cart.map((data, index) => (
+                    {cart.map((data,index) => (
                         <div
                             key={index}
                             className='w-full bg-white rounded-2xl shadow-md hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex flex-col md:flex-row justify-between items-center p-4'
@@ -20,7 +20,7 @@ function Cart() {
                             <img 
                                 className='h-40 w-40 object-cover rounded-lg mb-4 md:mb-0'
                                 src={data.image} 
-                                alt="Product" 
+                                alt={data.title} 
                             />
 
                             <div className='flex flex-col flex-grow px-4 text-center md:text-left'>
@@ -30,8 +30,9 @@ function Cart() {
                             </div>
 
                             <button 
-                            onClick={() => HandleDelete(index)}
-                            className='mt-4 md:mt-0 font-bold bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow-lg transition-all duration-200'>
+                                onClick={() => HandleDelete(index)}
+                                className='mt-4 md:mt-0 font-bold bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow-lg transition-all duration-200'
+                            >
                                 Remove
                             </button>
                         </div>

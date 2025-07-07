@@ -45,7 +45,7 @@ import React, { Children, createContext, useEffect, useState } from 'react'
         )
     })
     const Click = (id) =>{
-        const update = filterData.filter((value) => value._id === id)
+        const update = filterData.filter((value,index) => index === id)
         setCart((pre) => [...pre,update])
     }
 

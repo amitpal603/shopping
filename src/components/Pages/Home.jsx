@@ -5,12 +5,12 @@ function Home() {
   const { filterData, Click } = useContext(Ecart);
 
   return (
-    <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-6 px-2 sm:px-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6 px-2 sm:px-4">
       {filterData && filterData.length ? (
-        filterData.map((data) => (
+        filterData.map((data,index) => (
           <div
             key={data._id}
-            className="w-64 sm:w-72 bg-white rounded-2xl shadow-lg hover:scale-105 transform transition-all duration-300 flex flex-col items-center p-3 sm:p-4 space-y-4"
+            className="bg-white rounded-2xl shadow-lg hover:scale-105 transform transition-all duration-300 flex flex-col items-center p-3 sm:p-4 space-y-4"
           >
             <h1 className="text-sm sm:text-lg font-semibold text-purple-600 uppercase text-center">{data.category}</h1>
             <img 
@@ -23,7 +23,6 @@ function Home() {
             <p className="text-base sm:text-lg font-bold text-green-600">₹{data.price}</p>
             <p className="text-xs sm:text-sm text-gray-600 line-clamp-3 text-center">{data.description}</p>
 
-            {/* Sizes with safety check */}
             <div className="flex gap-2 sm:gap-4">
               {data.size?.map((size, index) => (
                 <span 
@@ -36,7 +35,7 @@ function Home() {
             </div>
 
             <button 
-              onClick={() => Click(data._id)}
+              onClick={() => Click(index)}
               className="px-3 sm:px-4 py-2 sm:py-3 bg-purple-500 shadow-lg shadow-purple-400 rounded-md hover:scale-95 font-bold text-white text-sm sm:text-base"
             >
               Add Cart
