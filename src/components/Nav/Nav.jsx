@@ -18,7 +18,7 @@ function Nav() {
     <div>
       <nav className='h-20 w-full shadow-lg flex justify-between items-center px-4 md:px-10'>
 
-        <h1 className='text-2xl font-bold'>AN<span className='text-purple-500'>mall</span></h1>
+        <h1 className='text-2xl font-bold pr-4'>AN<span className='text-purple-500'>mall</span></h1>
 
         {/* Search */}
         <form onSubmit={Handle} className='flex items-center'>
@@ -45,7 +45,6 @@ function Nav() {
             </NavLink>
             <h1 className='animate-bounce text-white'>{cart.length}</h1>
           </div>
-          <h1 className='text-[20px] font-bold'>Cart</h1>
         </div>
 
         {/* Links for large screens */}
