@@ -10,7 +10,7 @@ function Cart() {
         <div className='min-h-screen flex flex-col items-center p-6 bg-gray-100'>
             <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
 
-            {cart?.length > 0 ? (
+            {cart.length > 0 ? (
                 <div className='flex flex-col gap-6 w-full max-w-3xl'>
                     {cart.map((data,index) => (
                         <div

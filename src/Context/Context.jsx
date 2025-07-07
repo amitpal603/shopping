@@ -47,10 +47,12 @@ import toast from 'react-hot-toast'
         )
     })
     const Click = (id) =>{
-        const update = filterData.filter((value,index) => index === id)
+        const update = filterData.find((value,index) => index === id)
         setCart((pre) => [...pre,update])
         toast.success("Add Cart")
+        
     }
+
 
     const HandleDelete = (id) => {
         const del = cart.filter((value,index) => index !== id)
