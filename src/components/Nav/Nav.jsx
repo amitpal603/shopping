@@ -3,13 +3,12 @@ import { IoSearchSharp } from "react-icons/io5";
 import { FaCartShopping } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom';
 import { CgMenu } from "react-icons/cg";
-import { IoClose } from "react-icons/io5"; // Close icon
+import { IoClose } from "react-icons/io5";
 import { Ecart } from '../../Context/Context';
 
 function Nav() {
-  const {Handle,HandleClick,setInput,cart} = useContext(Ecart)
+  const { Handle, HandleClick, setInput, cart } = useContext(Ecart);
   const [open, setOpen] = useState(false);
-
 
   const toggle = () => {
     setOpen(!open);
@@ -21,24 +20,22 @@ function Nav() {
 
         <h1 className='text-2xl font-bold'>AN<span className='text-purple-500'>mall</span></h1>
 
-        {/* Search - always visible */}
-        <form  
-        onSubmit={Handle}
-        className='flex items-center'>
+        {/* Search */}
+        <form onSubmit={Handle} className='flex items-center'>
           <div 
-          onClick={HandleClick}
-          className='h-12 w-10 border-t-2 border-l-2 border-b-2 flex justify-center border-gray-500 items-center rounded-l-2xl font-medium text-[20px] cursor-pointer'>
+            onClick={HandleClick}
+            className='h-12 w-10 border-t-2 border-l-2 border-b-2 flex justify-center border-gray-500 items-center rounded-l-2xl font-medium text-[20px] cursor-pointer'>
             <IoSearchSharp />
           </div>
           <input
             onChange={(e) => setInput(e.target.value)}
-            className='h-12 w-40 sm:w-60  outline-none border-t-2 border-r-2 border-b-2 border-gray-500 rounded-r-2xl'
+            className='h-12 w-28 xs:w-36 sm:w-48 md:w-60 outline-none border-t-2 border-r-2 border-b-2 border-gray-500 rounded-r-2xl'
             type="text"
             placeholder='Search'
           />
         </form>
 
-        {/* Cart - always visible */}
+        {/* Cart */}
         <div className='flex items-center gap-2'>
           <div className='flex items-center gap-3 px-3 py-2 bg-purple-400 rounded-sm'>
             <NavLink to="/Cart">
@@ -51,9 +48,13 @@ function Nav() {
           <h1 className='text-[20px] font-bold'>Cart</h1>
         </div>
 
-        {/* Main Links & Login/Signup - hidden on small screen */}
+        {/* Links for large screens */}
         <div className='hidden lg:flex gap-6 items-center'>
-          {[{ to: "/", label: "Home" }, { to: "/About", label: "About" }, { to: "/Contact", label: "Contact" }].map((link, index) => (
+          {[
+            { to: "/", label: "Home" },
+            { to: "/About", label: "About" },
+            { to: "/Contact", label: "Contact" }
+          ].map((link, index) => (
             <NavLink
               key={index}
               to={link.to}
@@ -63,7 +64,10 @@ function Nav() {
             </NavLink>
           ))}
 
-          {[{ to: "/login", label: "Login" }, { to: "/sign", label: "Sign-Up" }].map((link, index) => (
+          {[
+            { to: "/login", label: "Login" },
+            { to: "/sign", label: "Sign-Up" }
+          ].map((link, index) => (
             <button
               key={index}
               className='px-3 py-2 bg-purple-400 rounded-sm font-bold cursor-pointer hover:bg-purple-500'
@@ -75,36 +79,42 @@ function Nav() {
           ))}
         </div>
 
-        {/* Toggle Button - only small screens */}
-        <h1
-          onClick={toggle}
-          className='block lg:hidden font-bold text-2xl cursor-pointer'
-        >
+        {/* Hamburger for mobile */}
+        <h1 onClick={toggle} className='block lg:hidden font-bold text-2xl cursor-pointer'>
           {open ? <IoClose /> : <CgMenu />}
         </h1>
       </nav>
 
-      {/* Animated Toggle Menu inside new div */}
+      {/* Mobile Menu */}
       <div className="relative lg:hidden">
         <div
-          className={`absolute top-5 left-5 w-50 transition-all duration-500 overflow-hidden bg-gray-100 z-10 ${
+          className={`absolute top-20 left-0 w-full transition-all duration-500 overflow-hidden bg-gray-100 z-10 ${
             open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="flex flex-col items-center py-4 gap-4">
-            {[{ to: "/", label: "Home" }, { to: "/About", label: "About" }, { to: "/Contact", label: "Contact" }].map((link, index) => (
+            {[
+              { to: "/", label: "Home" },
+              { to: "/About", label: "About" },
+              { to: "/Contact", label: "Contact" }
+            ].map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
                 onClick={() => setOpen(false)}
-                className="text-xl font-medium text-gray-700 hover:text-purple-500"
+                className={({ isActive }) =>
+                  `text-xl font-medium ${isActive ? 'text-purple-500' : 'text-gray-700'} hover:text-purple-500`
+                }
               >
                 {link.label}
               </NavLink>
             ))}
 
             <div className='flex gap-4'>
-              {[{ to: "/login", label: "Login" }, { to: "/sign", label: "Sign-Up" }].map((link, index) => (
+              {[
+                { to: "/login", label: "Login" },
+                { to: "/sign", label: "Sign-Up" }
+              ].map((link, index) => (
                 <button
                   key={index}
                   className='px-4 py-2 bg-purple-400 rounded-sm font-bold hover:bg-purple-500'
