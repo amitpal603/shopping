@@ -11,6 +11,8 @@ import toast from 'react-hot-toast'
     const [search,setSearch] = useState("")
     const [input,setInput] = useState("")
     const [cart,setCart] = useState([])
+    const [qCount,setQcount] = useState(1)
+    const [cartSearch,setCartSearch] = useState("")
 
     const Handle = (e) =>{
         e.preventDefault()
@@ -32,6 +34,7 @@ import toast from 'react-hot-toast'
 
     const HandleClick = () => {
         setSearch(input)
+        setCartSearch(input)
         if(input === "")
         {
             alert("Enter the product name..")
@@ -59,6 +62,25 @@ import toast from 'react-hot-toast'
         setCart(del)
         toast.error("remove cart")
     }
+    //increment fun to cart
+    const HandleIncre = (index) => {
+    
+};
+
+    // discrement fun. to cart
+    const HandleDcre = (id) =>{
+
+    }
+
+    const cartData = cart.filter((item) => {
+        const searchTerm = cartSearch.toLowerCase()
+        if(searchTerm === "") return cart
+
+        return (
+            item.title.toLowerCase().includes(searchTerm) ||
+            item.brand.toLowerCase().includes(searchTerm) 
+        )
+    })
     const value = {
        CartData,
        Handle,
@@ -69,7 +91,10 @@ import toast from 'react-hot-toast'
        filterData,
        Click,
        cart,
-       HandleDelete
+       HandleDelete,
+       HandleIncre,
+       qCount,
+       cartData
     }
 
   return <Ecart.Provider value={value}>{children}</Ecart.Provider>

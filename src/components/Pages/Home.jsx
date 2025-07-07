@@ -35,7 +35,7 @@ function Home() {
             </div>
 
             <button 
-              onClick={() => Click(index)}
+              onClick={() => Click(data._id)}
               className="px-3 sm:px-4 py-2 sm:py-3 bg-purple-500 shadow-lg shadow-purple-400 rounded-md hover:scale-95 font-bold text-white text-sm sm:text-base"
             >
               Add Cart
