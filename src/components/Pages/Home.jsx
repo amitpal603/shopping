@@ -43,7 +43,7 @@ function Home() {
           </div>
         ))
       ) : (
-        <p className="text-red-500 text-xl font-semibold">Data not found</p>
+        <p className="text-red-500 text-xl font-semibold ">Data not found</p>
       )}
     </div>
   );

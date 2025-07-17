@@ -49,12 +49,27 @@ import toast from 'react-hot-toast'
             item.brand.toLowerCase().includes(searchTerm) 
         )
     })
-    const Click = (id) =>{
-        const update = filterData.find((value,index) => index === id)
-        setCart((pre) => [...pre,update])
-        toast.success("Add Cart")
-        
+    const Click = (id) => {
+    const update = filterData.find((_, index) => index === id);
+
+    const existingItem = cart.find(item => item._id === update._id);
+
+    if (existingItem) {
+        // Increase quantity if already in cart
+        setCart((prev) =>
+            prev.map(item =>
+                item._id === update._id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            )
+        );
+    } else {
+        // Add new item with quantity 1
+        setCart((prev) => [...prev, { ...update, quantity: 1 }]);
+        toast.success("Added to Cart");
     }
+};
+
 
 
     const HandleDelete = (id) => {
@@ -62,15 +77,7 @@ import toast from 'react-hot-toast'
         setCart(del)
         toast.error("remove cart")
     }
-    //increment fun to cart
-    const HandleIncre = (index) => {
-    
-};
 
-    // discrement fun. to cart
-    const HandleDcre = (id) =>{
-
-    }
 
     const cartData = cart.filter((item) => {
         const searchTerm = cartSearch.toLowerCase()
@@ -81,6 +88,29 @@ import toast from 'react-hot-toast'
             item.brand.toLowerCase().includes(searchTerm) 
         )
     })
+
+    const HandleIncre = (id) => {
+    setCart((prev) =>
+        prev.map(item =>
+            item._id === id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        )
+    );
+};
+
+const HandleDecre = (id) => {
+    setCart((prev) =>
+        prev.map(item =>
+            item._id === id && item.quantity > 1
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+        )
+    );
+};
+
+    
+    
     const value = {
        CartData,
        Handle,
@@ -94,7 +124,8 @@ import toast from 'react-hot-toast'
        HandleDelete,
        HandleIncre,
        qCount,
-       cartData
+       cartData,
+       HandleDecre
     }
 
   return <Ecart.Provider value={value}>{children}</Ecart.Provider>
