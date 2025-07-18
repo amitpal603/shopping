@@ -51,11 +51,10 @@ import toast from 'react-hot-toast'
     })
     const Click = (id) => {
     const update = filterData.find((_, index) => index === id);
+    
+    const ExtstingItem = cart.find((item) => item._id === update._id)
 
-    const existingItem = cart.find(item => item._id === update._id);
-
-    if (existingItem) {
-        // Increase quantity if already in cart
+    if(ExtstingItem){
         setCart((prev) =>
             prev.map(item =>
                 item._id === update._id
@@ -68,6 +67,7 @@ import toast from 'react-hot-toast'
         setCart((prev) => [...prev, { ...update, quantity: 1 }]);
         toast.success("Added to Cart");
     }
+   
 };
 
 
